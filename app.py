@@ -7,8 +7,8 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("⚖️ Chatbot de consulta de Indice de masa corporal y clasificación según OMS- Busqueda de artículos científicos relacionados a la temática")
-st.caption("Asistente educativo — no reemplaza consulta médica")
+st.title("⚖️ Chatbot de consulta de Indice de masa corporal y clasificación según OMS")
+st.caption("Tambien puedes buscar artículos científicos relacionados a la temática - Este es un Asistente educativo, no reemplaza consulta médica!")
 
 # Historial
 if "messages" not in st.session_state:
