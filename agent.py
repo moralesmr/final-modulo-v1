@@ -6,9 +6,6 @@ from langgraph.checkpoint.memory import MemorySaver
 from langchain.agents import create_agent
 from langchain_community.tools.pubmed.tool import PubmedQueryRun
 
-# === API KEY DESDE VARIABLES DE ENTORNO ===
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
 #creacion de herramientas propias
 
 #1-CONVERSION DE MEDIDAS PARA PODER HACER EL CALCULO DE INDICE DE MASA CORPORAL
