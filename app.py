@@ -7,14 +7,8 @@ st.set_page_config(
     layout="centered"
 )
 
-st.title("⚖️ Chatbot de IMC y PubMed")
+st.title("⚖️ Chatbot de consulta de Indice de masa corporal y clasificación según OMS- Busqueda de artículos científicos relacionados a la temática")
 st.caption("Asistente educativo — no reemplaza consulta médica")
-
-modo = st.radio(
-    "Modo:",
-    ["📏 Calcular IMC", "📚 Buscar en PubMed"],
-    horizontal=True
-)
 
 # Historial
 if "messages" not in st.session_state:
@@ -24,15 +18,17 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Ejemplos
+# Ejemplos rápidos
 st.markdown("### Ejemplos rápidos")
+col1, col2 = st.columns(2)
 
-if modo == "📏 Calcular IMC":
+with col1:
     if st.button("Ejemplo IMC"):
-        st.session_state.input = "Mido 5.6 pies y peso 180 libras. Calculá mi IMC."
-else:
+        st.session_state.input = "Mido 1.70 metros y peso 70 kg. ¿Cuál es mi IMC?"
+
+with col2:
     if st.button("Ejemplo PubMed"):
-        st.session_state.input = "Busca estudios sobre IMC y obesidad."
+        st.session_state.input = "Busca estudios recientes sobre IMC y obesidad."
 
 prompt = st.chat_input("Escribí tu consulta")
 
@@ -40,28 +36,19 @@ if "input" in st.session_state:
     prompt = st.session_state.input
     del st.session_state.input
 
-# Validación visual
-def validar(texto):
-    if modo == "📏 Calcular IMC":
-        return "pie" in texto.lower() and "libra" in texto.lower()
-    return True
-
 if prompt:
-    if not validar(prompt):
-        st.warning("⚠️ Usa pies y libras para calcular IMC.")
-    else:
-        st.session_state.messages.append(
-            {"role": "user", "content": prompt}
-        )
+    st.session_state.messages.append(
+        {"role": "user", "content": prompt}
+    )
 
-        with st.chat_message("user"):
-            st.markdown(prompt)
+    with st.chat_message("user"):
+        st.markdown(prompt)
 
-        with st.chat_message("assistant"):
-            with st.spinner("Procesando..."):
-                response = run_agent(prompt)
-            st.markdown(response)
+    with st.chat_message("assistant"):
+        with st.spinner("Procesando..."):
+            response = run_agent(prompt)
+        st.markdown(response)
 
-        st.session_state.messages.append(
-            {"role": "assistant", "content": response}
-        )
+    st.session_state.messages.append(
+        {"role": "assistant", "content": response}
+    )
