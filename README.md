@@ -115,6 +115,7 @@ streamlit run app.py
 
 La aplicación se abrirá en el navegador y permitirá interactuar con el agente de forma conversacional.
 
+NOTA: Además se agrega el archivo ipynb inicial y el archivo pdf con la documentación , arquitectura y reflexiones finales del proyecto.
 ---
 
 ## Despliegue en Streamlit Cloud
